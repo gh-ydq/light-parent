@@ -1,0 +1,13 @@
+com\light\core\config\JpaDataConfig.class
+com\light\core\repository\LightInfoRepositoryAndSpecification.class
+com\light\core\repository\UserRepository.class
+com\light\core\entity\User.class
+com\light\core\repository\LightInfoJpaRepository.class
+com\light\core\entity\QLightInfo.class
+com\light\core\impl\LightInfoServiceImpl.class
+com\light\core\repository\UserJpaRepository.class
+com\light\core\entity\LightInfo.class
+com\light\core\service\IUserService.class
+com\light\core\entity\QUser.class
+com\light\core\service\ILightInfoService.class
+com\light\core\impl\UserServiceImpl.class
