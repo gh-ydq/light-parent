@@ -1,8 +1,0 @@
-com\light\web\controller\AbstractController.class
-com\light\web\util\SpringWebUtil.class
-com\light\web\controller\UserController.class
-com\light\web\controller\LoginController.class
-com\light\web\controller\LedController.class
-com\light\web\util\SpringUtil.class
-com\light\web\config\ConfigInit.class
-com\light\web\util\JqGridPage.class
