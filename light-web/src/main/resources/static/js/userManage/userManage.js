@@ -137,7 +137,7 @@ ShowList.grid_table.jqGrid({
                 return ftButton(value);
             }
         },
-        {name:'editCmdButton',index:'',width:1,hidden:true,editable:true,edittype:'custom',
+        {name:'lightCmd',index:'',width:1,hidden:true,editable:true,edittype:'custom',
             editrules:{edithidden:true},
             editoptions:{
                 custom_element: mCreateSelectElement, custom_value:createInpuElementValue
@@ -156,7 +156,7 @@ ShowList.grid_table.jqGrid({
     viewrecords : true,
     multiselect: true,
     multiboxonly:true,//单选
-    editurl:"/light/updateInfo",
+    editurl:"/lightDownCmd/cmdInfo",
     beforeSelectRow:function(rowid){//单选
         var id = ShowList.grid_table.jqGrid('getGridParam','selrow');
         ShowList.grid_table.jqGrid('resetSelection');
@@ -248,7 +248,7 @@ function mCreateButtonElement(value, options){
 	if(options.id == "editPositionButton"){
 		dom = "<a href='#' class='btn btn-light' id='"+options.id+"' style='height:34px;'><i class='fa fa-graduation-cap'></i>&nbsp;&nbsp;指派职位</a>";
 	}
-	if(options.id == editCmdButton){
+	if(options.id == "lightCmd"){
         dom = "<a href='#' class='btn btn-light' id='"+options.id+"' style='height:34px;'><i class='fa fa-graduation-cap'></i>&nbsp;&nbsp;操作命令</a>";
 	}
 	return dom;
@@ -274,18 +274,34 @@ function createInputElement(value, options) {
 function mCreateSelectElement(value, options) {
 	if(options.id == "isvalid"){
 		var element = document.createElement("select");
-		element.options.add(new Option("停电","stopEletic"));
-		element.options.add(new Option("检测","check"));
+		element.options.add(new Option("开灯","startEletic"));
+        element.options.add(new Option("停电","stopEletic"));
+		element.options.add(new Option("设备检测","deviceCheck"));
+        element.options.add(new Option("亮度调节","lightAdjust"));
+        element.options.add(new Option("修改imei","updateImei"));
+        element.options.add(new Option("修改内置参数","updateInsideParam"));
 		if(value.indexOf("停电") != -1){
 			$(element).val("stopEletic");
-		} else if(value.indexOf("检测") != -1){
-			$(element).val("check");
-		}
+		} else if(value.indexOf("开灯") != -1){
+			$(element).val("startEletic");
+		}else if(value.indexOf("设备检测") != -1){
+            $(element).val("deviceCheck");
+        }else if(value.indexOf("亮度调节") != -1){
+            $(element).val("lightAdjust");
+        }else if(value.indexOf("修改imei") != -1){
+            $(element).val("updateImei");
+        }else if(value.indexOf("修改内置参数") != -1){
+            $(element).val("updateInsideParam");
+        }
 		return element;
 	} else {
-		var element = document.createElement("select");
+        var element = document.createElement("select");
+        element.options.add(new Option("开灯","startEletic"));
         element.options.add(new Option("停电","stopEletic"));
-        element.options.add(new Option("检测","check"));
+        element.options.add(new Option("设备检测","deviceCheck"));
+        element.options.add(new Option("亮度调节","lightAdjust"));
+        element.options.add(new Option("修改imei","updateImei"));
+        element.options.add(new Option("修改内置参数","updateInsideParam"));
 		return element;
 	}
 }
@@ -340,23 +356,6 @@ function initButtonClick(){
 function ftButton(value){
 	var editUserButton = "<a href='#' class='btn btn-light editUserButton' style='height:30px;'><i class='fa fa-edit'></i>&nbsp;&nbsp;修改</a>";
 	return editUserButton;
-}
-
-//格式化性别
-function ftGender(value){
-	if(value == "F"){
-		return "<i class='fa fa-male' aria-hidden='true'></i>&nbsp;&nbsp;男";
-	} else {
-		return "<i class='fa fa-female' aria-hidden='true'></i>&nbsp;&nbsp;女";
-	}
-}
-//格式化是否有效
-function ftIsValid(value){
-	if(value == "yes"){
-		return "<i class='fa fa-check' aria-hidden='true'></i>&nbsp;&nbsp;有效";
-	} else {
-		return "<i class='fa fa-close' aria-hidden='true'></i>&nbsp;&nbsp;无效";
-	}
 }
 
 //查询

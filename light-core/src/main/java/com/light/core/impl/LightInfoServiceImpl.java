@@ -1,11 +1,11 @@
 package com.light.core.impl;
 
-import com.light.core.entity.LightInfo;
-import com.light.core.entity.QLightInfo;
-import com.light.core.repository.LightInfoJpaRepository;
-import com.light.core.service.ILightInfoService;
-import com.querydsl.core.types.Predicate;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
+import com.light.core.entity.LightInfo;
+import com.light.core.repository.LightInfoJpaRepository;
+import com.light.core.service.ILightInfoService;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
+import com.light.core.entity.QLightInfo;
 @Service
 @Transactional
 public class LightInfoServiceImpl implements ILightInfoService {
@@ -47,7 +50,7 @@ public class LightInfoServiceImpl implements ILightInfoService {
 
     @Override
     public void saveLightInfo(LightInfo user) {
-
+        lightInfoJpaRepository.saveAndFlush(user);
     }
 
     @Override
